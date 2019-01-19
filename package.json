@@ -1,0 +1,25 @@
+{
+  "name": "doctor-jones-loader",
+  "version": "0.0.1",
+  "description": "A webpack loader of doctor-jones",
+  "main": "index.js",
+  "scripts": {
+    "test": "ava test/*.test.js -v"
+  },
+  "author": "Leopoldthecoder",
+  "license": "MIT",
+  "dependencies": {
+    "babel-eslint": "^10.0.1",
+    "doctor-jones": "0.0.3",
+    "jest": "^24.0.0-alpha.12"
+  },
+  "devDependencies": {
+    "@babel/preset-react": "^7.0.0",
+    "ava": "^1.1.0",
+    "babel-loader": "^8.0.5",
+    "eslint-config-doran": "^1.0.8",
+    "memory-fs": "^0.4.1",
+    "prettier": "^1.15.3",
+    "webpack": "^4.28.4"
+  }
+}
