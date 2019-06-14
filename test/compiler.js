@@ -2,7 +2,7 @@ const path = require('path')
 const webpack = require('webpack')
 const Memory = require('memory-fs')
 
-module.exports = (fixture, options = {}) => {
+module.exports = (fixture, options) => {
   const compiler = webpack({
     context: __dirname,
     entry: `./${fixture}`,

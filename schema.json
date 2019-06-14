@@ -1,0 +1,28 @@
+{
+  "type": "object",
+  "properties": {
+    "djOptions": {
+      "type": "object",
+      "properties": {
+        "spacing": {
+          "type": "boolean"
+        },
+        "spaceBetweenFullwidthPunctuationAndAlphabets": {
+          "type": "boolean"
+        },
+        "successiveExclamationMarks": {
+          "type": "boolean"
+        },
+        "ellipsisTolerance": {
+          "type": "string"
+        },
+        "replaceWithCornerQuotes": {
+          "type": "string"
+        },
+        "halfwidthParenthesisAroundNumbers": {
+          "type": "boolean"
+        }
+      }
+    }
+  }
+}

@@ -1,10 +1,10 @@
 const { parse } = require('babel-eslint')
+const { getOptions } = require('loader-utils')
+const validateOptions = require('schema-utils')
 const dj = require('doctor-jones')
-// const fs = require('fs')
+const spliceString = require('splice-string')
+const optionSchema = require('./schema')
 
-const getReplacer = quote => (match, p1) => {
-  return isPath(p1) ? match : `${quote}${dj(p1)}${quote}`
-}
 const isPath = string =>
   /^((\.\.\/)*|((\.)?\/))([^/\s]+\/)+[^/\s]*$/.test(string)
 
@@ -32,9 +32,11 @@ const traverse = (obj, parents, nodes) => {
 }
 
 module.exports = function(source) {
-  // const path = this.resourcePath
+  const options = getOptions(this) || {}
+  validateOptions(optionSchema, options, 'doctor-jones-loader')
+
   const nodesNeedFormatting = []
-  parse(source).body.forEach((node, index) => {
+  parse(source).body.forEach(node => {
     const parents = []
     const nodes = []
     traverse(node, parents, nodes)
@@ -50,13 +52,37 @@ module.exports = function(source) {
       nodesNeedFormatting.push(nodes)
     }
   })
-  // console.log(nodesNeedFormatting)
-  const output = source
-    .replace(/'(.+)'/g, getReplacer("'"))
-    .replace(/"(.+)"/g, getReplacer('"'))
-    .replace(/`(.+)`/g, getReplacer('`'))
-  // if (output !== source) {
-  //   fs.writeFileSync(path, output)
-  // }
-  return output
+
+  const flatNodes = nodesNeedFormatting
+    .reduce((acc, cur) => acc.concat(cur), [])
+    .filter(
+      node =>
+        !!node && // node 存在
+        node.value !== null && // value 存在
+        typeof node.value !== 'number' // 过滤模板字符串中的数字字面量
+    )
+    .sort((a, b) => (a.start > b.start ? -1 : 1))
+
+  flatNodes.forEach(node => {
+    const { value, start, end } = node
+    if (isPath(value)) {
+      return
+    }
+    source = spliceString(
+      source,
+      start,
+      end - start,
+      dj(
+        source
+          .slice(start, end)
+          // 将被转义的汉字字符转化为原汉字
+          .replace(/\\u([0-9a-fA-F]{4})/g, (match, p1) => {
+            return p1 ? String.fromCodePoint(parseInt(p1, 16)) : match
+          }),
+        options.djOptions
+      )
+    )
+  })
+
+  return source
 }
