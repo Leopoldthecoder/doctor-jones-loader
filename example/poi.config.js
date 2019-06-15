@@ -11,7 +11,7 @@ module.exports = {
               // change the next line to `loader: 'doctor-jones-loader'` in your project
               loader: require('path').resolve('../index.js'),
               options: {
-                djOptions: {
+                formatOptions: {
                   replaceWithCornerQuotes: 'single'
                 }
               }

@@ -1,9 +1,9 @@
-const { parse } = require('babel-eslint')
-const { getOptions } = require('loader-utils')
-const validateOptions = require('schema-utils')
-const dj = require('doctor-jones')
-const spliceString = require('splice-string')
-const optionSchema = require('./schema')
+import { parse } from 'babel-eslint'
+import { getOptions } from 'loader-utils'
+import validateOptions from 'schema-utils'
+import dj from 'doctor-jones'
+import spliceString from 'splice-string'
+import optionSchema from './schema'
 
 const isPath = string =>
   /^((\.\.\/)*|((\.)?\/))([^/\s]+\/)+[^/\s]*$/.test(string)
@@ -79,7 +79,7 @@ module.exports = function(source) {
           .replace(/\\u([0-9a-fA-F]{4})/g, (match, p1) => {
             return p1 ? String.fromCodePoint(parseInt(p1, 16)) : match
           }),
-        options.djOptions
+        options.formatOptions
       )
     )
   })

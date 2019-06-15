@@ -1,7 +1,7 @@
 {
   "type": "object",
   "properties": {
-    "djOptions": {
+    "formatOptions": {
       "type": "object",
       "properties": {
         "spacing": {

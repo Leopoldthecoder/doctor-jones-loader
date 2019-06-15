@@ -1,6 +1,7 @@
 const path = require('path')
 const webpack = require('webpack')
 const Memory = require('memory-fs')
+const VueLoaderPlugin = require('vue-loader/lib/plugin')
 
 module.exports = (fixture, options) => {
   const compiler = webpack({
@@ -26,9 +27,37 @@ module.exports = (fixture, options) => {
               }
             }
           ]
+        },
+        {
+          test: /\.vue$/,
+          use: [
+            {
+              loader: path.resolve(__dirname, '../index.js'),
+              options
+            },
+            {
+              loader: 'vue-loader'
+            }
+          ]
+        },
+        {
+          test: /\.ts$/,
+          use: [
+            {
+              loader: path.resolve(__dirname, '../index.js'),
+              options
+            },
+            {
+              loader: 'ts-loader'
+            }
+          ]
         }
       ]
-    }
+    },
+
+    plugins: [
+      new VueLoaderPlugin()
+    ]
   })
 
   compiler.outputFileSystem = new Memory()
