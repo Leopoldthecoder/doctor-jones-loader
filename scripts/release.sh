@@ -18,10 +18,9 @@ if [[ $REPLY =~ ^[Yy]$ ]]; then
   VERSION=$VERSION npm run build
 
   # version
-  npm --no-git-tag-version version $VERSION --message "[release] $VERSION"
+  npm version $VERSION --message "[release] $VERSION"
 
   # publish
-  git tag $VERSION
   git push origin refs/tags/$VERSION
   git push origin master
   npm publish
