@@ -1,4 +1,8 @@
 .idea
+.eslintignore
+.eslintrc
+.prettierrc.js
+rollup.config.js
 build
 example
 test

@@ -13,12 +13,20 @@
       "esm"
     ]
   },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Leopoldthecoder/doctor-jones-loader.git"
+  },
   "author": "Leopoldthecoder",
   "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/Leopoldthecoder/doctor-jones-loader/issues"
+  },
+  "homepage": "https://github.com/Leopoldthecoder/doctor-jones-loader#readme",
   "dependencies": {
     "babel-eslint": "^9.0.0",
     "doctor-jones": "^0.1.1",
-    "jest": "^24.0.0-alpha.12",
+    "eslint": "^5.16.0",
     "loader-utils": "^1.2.3",
     "schema-utils": "^1.0.0",
     "splice-string": "^2.0.0"
