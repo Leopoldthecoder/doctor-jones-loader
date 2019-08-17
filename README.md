@@ -119,7 +119,7 @@ module.exports = {
         test: /\.vue$/,
         use: [
           {
-            loader: path.resolve(__dirname, '../index.js'),
+            loader: 'doctor-jones-loader',
             options: { formatOptions: {/* ... */} }
           },
           {
@@ -146,7 +146,7 @@ module.exports = {
         test: /\.ts$/,
         use: [
           {
-            loader: path.resolve(__dirname, '../index.js'),
+            loader: 'doctor-jones-loader',
             options: { formatOptions: {/* ... */} }
           },
           {
