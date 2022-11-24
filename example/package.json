@@ -11,6 +11,6 @@
     "eslint": "^5.9.0",
     "eslint-config-doran": "^1.0.8",
     "eslint-config-xo": "^0.25.0",
-    "poi": "^12.4.2"
+    "poi": "^12.10.3"
   }
 }
